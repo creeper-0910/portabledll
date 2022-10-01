@@ -1,6 +1,6 @@
-## How to build libportable source code?
+## Libportableのソースコードをビルドする方法
 
-- C compiler  
+- C コンパイラ 
 Microsoft Visual Studio .   
  
 - or
@@ -12,8 +12,8 @@ msys msys2 project on:
 https://sourceforge.net/projects/mingw/files/MSYS  
 https://sourceforge.net/projects/msys2/
 
-## Build!
-- vc14 or above  (cmd shell)  
+## ビルド
+- vc14以上  (cmd shell)  
 
 	nmake -f Makefile.msvc clean  
 	nmake -f Makefile.msvc
@@ -21,12 +21,12 @@ https://sourceforge.net/projects/msys2/
 	link against minimal msvcrt.dll:  
 	nmake -f Makefile.msvc MSVC_CRT=1
 
-- gcc/mingw64 compiler (msys shell)
+- gcc/mingw64 コンパイラ (msys shell)
 
 	make clean  
 	make
 	
-	enable GCC Link-time optimization(LTO):   
+	GCCリンク時間最適化の有効化(LTO):   
 	make LTO=1
 	
 	If gcc is a cross-compiler, use the CROSS_COMPILING option:
@@ -37,7 +37,7 @@ https://sourceforge.net/projects/msys2/
 	32bits:  
 	make CROSS_COMPILING=x86_64-w64-mingw32- BITS=32  
 
-- clang compiler,If you have MSVC compiler installed   
+- clangコンパイラー、MSVCコンパイラーがインストールされている場合  
 	**(cmd shell):**
 	
 	nmake -f Makefile.msvc CC=clang-cl clean  
@@ -54,13 +54,13 @@ https://sourceforge.net/projects/msys2/
 	make CC=clang DFLAGS=--target=x86_64-pc-windows-msvc  
 
 
-## Add libportable into Firefox?
-**Binary static injection,example:**
+## Firefox に libportable を追加しますか？
+**バイナリ静的注入(例:**
 	
 	setdll32 /d:portable32.dll mozglue.dll       // 32 bits firefox    
 	setdll64 /d:portable64.dll mozglue.dll       // 64 bits firefox    
 
-**Compiled from firefox's source code,patches example:**   
+**Firefoxのソースコードからコンパイルされたパッチの例:**   
 ```
 diff --git a/toolkit/library/nsDllMain.cpp b/toolkit/library/nsDllMain.cpp
 --- a/toolkit/library/nsDllMain.cpp
